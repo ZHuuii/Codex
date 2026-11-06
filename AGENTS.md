@@ -30,12 +30,15 @@
 
 | 角色 | 权限 |
 |---|---|
-| WorkBuddy | 读全部；只写 `.ai/workbuddy/`；经同意才动共享层 |
-| Codex | 读全部；只写 `.ai/codex/`；经同意才动共享层 |
-| 人 | 写 `docs/decisions/`；对一切有最终决定权 |
+| WorkBuddy | 读全部；**不直接提交**。产出交给人，由人代为写入 `.ai/workbuddy/` |
+| Codex | 读全部；写 `.ai/codex/`；经同意才动共享层 |
+| 人 | 写 `.ai/workbuddy/` 与 `docs/decisions/`；对一切有最终决定权 |
 
 **硬规则：任何一方不得写入、修改、删除对方的私有目录。**
 一旦交叉写入，两边的判断就不再独立，互检失效。
+
+**补充（2026-11-06）：** WorkBuddy 的仓库连接是只读授权，不能直接提交。
+所以上面这处不对称是事实，不是选择：WorkBuddy 负责「写什么」，人负责「什么时候、以什么形式写进去」。
 
 ---
 
@@ -50,7 +53,7 @@
 │   └── decisions/             # 最终裁决，只有人能定稿
 │       └── YYYY-MM-DD-主题.md
 └── .ai/
-    ├── workbuddy/             # WorkBuddy 写，Codex 只读
+    ├── workbuddy/             # WorkBuddy 产出，由人代为提交；Codex 只读
     │   └── YYYY-MM-DD-主题.md
     └── codex/                 # Codex 写，WorkBuddy 只读
         └── YYYY-MM-DD-主题.md
